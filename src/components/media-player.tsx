@@ -1,31 +1,39 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Play, Info } from "lucide-react"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Play, Info } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface MediaPlayerProps {
-  url: string
-  onUrlChange: (url: string) => void
+  url: string;
+  onUrlChange: (url: string) => void;
 }
 
 export function MediaPlayer({ url, onUrlChange }: MediaPlayerProps) {
-  const [inputUrl, setInputUrl] = useState<string>(url)
+  const [inputUrl, setInputUrl] = useState<string>(url);
 
   const handlePlay = () => {
-    onUrlChange(inputUrl)
-  }
+    onUrlChange(inputUrl);
+  };
 
   // Function to extract video ID from YouTube URL
   const getYouTubeEmbedUrl = (url: string) => {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
-    const match = url.match(regExp)
+    const regExp =
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
 
-    return match && match[2].length === 11 ? `https://www.youtube.com/embed/${match[2]}` : null
-  }
+    return match && match[2].length === 11
+      ? `https://www.youtube.com/embed/${match[2]}`
+      : null;
+  };
 
-  const embedUrl = getYouTubeEmbedUrl(url)
+  const embedUrl = getYouTubeEmbedUrl(url);
 
   return (
     <div className="mt-6">
@@ -40,7 +48,8 @@ export function MediaPlayer({ url, onUrlChange }: MediaPlayerProps) {
             </TooltipTrigger>
             <TooltipContent>
               <p className="max-w-xs">
-                Our algorithm analyzes audio frequencies to enhance focus based on neuroscience research.
+                Our algorithm analyzes audio frequencies to enhance focus based
+                on neuroscience research.
               </p>
             </TooltipContent>
           </Tooltip>
@@ -52,7 +61,7 @@ export function MediaPlayer({ url, onUrlChange }: MediaPlayerProps) {
           type="text"
           value={inputUrl}
           onChange={(e) => setInputUrl(e.target.value)}
-          placeholder="Enter YouTube URL"
+          placeholder="Enter YouTube URL for focus music"
           className="flex-1 bg-gray-900/70 border border-purple-500/30 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-400"
         />
         <Button
@@ -76,5 +85,5 @@ export function MediaPlayer({ url, onUrlChange }: MediaPlayerProps) {
         </div>
       )}
     </div>
-  )
+  );
 }

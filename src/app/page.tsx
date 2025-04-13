@@ -17,7 +17,7 @@ export default function Home() {
   const [isTimerActive, setIsTimerActive] = useState(false);
   const [volume, setVolume] = useState(57);
   const [videoUrl, setVideoUrl] = useState(
-    "https://www.youtube.com/watch?v=5qap5aO4i9A"
+    "https://www.youtube.com/watch?v=tAIiXRZNh9E"
   );
   const [activeTab, setActiveTab] = useState("focus");
   const [brainwaveMode, setBrainwaveMode] = useState("alpha");

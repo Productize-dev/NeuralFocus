@@ -7,8 +7,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Flocus - Focus Timer & Ambient Sounds",
-  description: "A productivity app with focus timer and ambient sounds",
+  title: "NueralFocus - Using Music to Focus",
+  description: "A productivity app with focus timer and intelligent sounds",
 };
 
 export default function RootLayout({

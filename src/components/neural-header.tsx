@@ -1,6 +1,6 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Brain } from "lucide-react"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Brain } from "lucide-react";
 
 export function NeuralHeader() {
   return (
@@ -19,10 +19,16 @@ export function NeuralHeader() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">
-          <Link href="/" className="text-gray-300 hover:text-white transition-colors">
+          <Link
+            href="/"
+            className="text-gray-300 hover:text-white transition-colors"
+          >
             Dashboard
           </Link>
-          <Link href="/neuroscience" className="text-gray-300 hover:text-white transition-colors">
+          <Link
+            href="/neuroscience"
+            className="text-gray-300 hover:text-white transition-colors"
+          >
             Neuroscience
           </Link>
         </nav>
@@ -30,21 +36,34 @@ export function NeuralHeader() {
         {/* Mobile navigation */}
         <nav className="md:hidden">
           <div className="flex items-center gap-4">
-            <Link href="/" className="text-sm text-gray-300 hover:text-white transition-colors">
+            <Link
+              href="/"
+              className="text-sm text-gray-300 hover:text-white transition-colors"
+            >
               Home
             </Link>
-            <Link href="/neuroscience" className="text-sm text-gray-300 hover:text-white transition-colors">
+            <Link
+              href="/neuroscience"
+              className="text-sm text-gray-300 hover:text-white transition-colors"
+            >
               Science
             </Link>
           </div>
         </nav>
 
         <div className="hidden sm:flex items-center gap-3">
-          <Button variant="outline" className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10">
-            Log In
+          <Button
+            variant="outline"
+            className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10"
+            asChild
+          >
+            <Link href="/auth/login">Log In</Link>
           </Button>
-          <Button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700">
-            Sign Up
+          <Button
+            className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
+            asChild
+          >
+            <Link href="/auth/signup">Sign Up</Link>
           </Button>
         </div>
 
@@ -59,5 +78,5 @@ export function NeuralHeader() {
         </div>
       </div>
     </header>
-  )
+  );
 }
