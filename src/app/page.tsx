@@ -17,7 +17,7 @@ export default function Home() {
   const [isTimerActive, setIsTimerActive] = useState(false);
   const [volume, setVolume] = useState(57);
   const [videoUrl, setVideoUrl] = useState(
-    "https://www.youtube.com/watch?v=tAIiXRZNh9E"
+    "https://www.youtube.com/watch?v=_egA9RZrD5k"
   );
   const [activeTab, setActiveTab] = useState("focus");
   const [brainwaveMode, setBrainwaveMode] = useState("alpha");
@@ -53,6 +53,7 @@ export default function Home() {
 
   const handleVideoChange = (url: string) => {
     setVideoUrl(url);
+    setActiveTab("sounds");
   };
 
   return (
@@ -126,21 +127,25 @@ export default function Home() {
                   <BrainwaveSelector
                     activeMode={brainwaveMode}
                     onChange={setBrainwaveMode}
+                    onVideoChange={handleVideoChange}
                   />
                 </TabsContent>
 
-                <TabsContent value="sounds" className="mt-0">
-                  <SoundController
-                    volume={volume}
-                    onVolumeChange={handleVolumeChange}
-                  />
-                  <MediaPlayer url={videoUrl} onUrlChange={handleVideoChange} />
-                </TabsContent>
+                <TabsContent value="sounds" className="mt-0"></TabsContent>
 
                 <TabsContent value="checklist" className="mt-0">
                   <FocusChecklist />
                 </TabsContent>
               </Tabs>
+
+              {/* Keep SoundController and MediaPlayer mounted but toggle visibility */}
+              <div className={`${activeTab === "sounds" ? "block" : "hidden"}`}>
+                <SoundController
+                  volume={volume}
+                  onVolumeChange={handleVolumeChange}
+                />
+                <MediaPlayer url={videoUrl} onUrlChange={handleVideoChange} />
+              </div>
             </div>
           </div>
 

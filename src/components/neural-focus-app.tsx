@@ -20,14 +20,45 @@ declare global {
 
 export function NeuralFocusApp() {
   // State management with React hooks
-  const [focusTask, setFocusTask] = useState("");
-  const [isTimerActive, setIsTimerActive] = useState(false);
-  const [volume, setVolume] = useState(57);
-  const [videoUrl, setVideoUrl] = useState(
-    "https://www.youtube.com/watch?v=5qap5aO4i9A"
-  );
-  const [activeTab, setActiveTab] = useState("focus");
-  const [brainwaveMode, setBrainwaveMode] = useState("alpha");
+  const [focusTask, setFocusTask] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("focusTask") || "";
+    }
+    return "";
+  });
+  const [isTimerActive, setIsTimerActive] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("isTimerActive") === "true";
+    }
+    return false;
+  });
+  const [volume, setVolume] = useState(() => {
+    if (typeof window !== "undefined") {
+      return parseInt(localStorage.getItem("volume") || "57");
+    }
+    return 57;
+  });
+  const [videoUrl, setVideoUrl] = useState(() => {
+    if (typeof window !== "undefined") {
+      return (
+        localStorage.getItem("videoUrl") ||
+        "https://www.youtube.com/watch?v=5qap5aO4i9A"
+      );
+    }
+    return "https://www.youtube.com/watch?v=5qap5aO4i9A";
+  });
+  const [activeTab, setActiveTab] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("activeTab") || "focus";
+    }
+    return "focus";
+  });
+  const [brainwaveMode, setBrainwaveMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("brainwaveMode") || "alpha";
+    }
+    return "alpha";
+  });
 
   // Use a stable reference for the volume change handler
   const autoVolumeChangeRef = useRef<((volume: number) => void) | null>(null);
@@ -42,6 +73,31 @@ export function NeuralFocusApp() {
 
     // No need to return cleanup as we're just reading a value
   }, []);
+
+  // Save state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("focusTask", focusTask);
+  }, [focusTask]);
+
+  useEffect(() => {
+    localStorage.setItem("isTimerActive", isTimerActive.toString());
+  }, [isTimerActive]);
+
+  useEffect(() => {
+    localStorage.setItem("volume", volume.toString());
+  }, [volume]);
+
+  useEffect(() => {
+    localStorage.setItem("videoUrl", videoUrl);
+  }, [videoUrl]);
+
+  useEffect(() => {
+    localStorage.setItem("activeTab", activeTab);
+  }, [activeTab]);
+
+  useEffect(() => {
+    localStorage.setItem("brainwaveMode", brainwaveMode);
+  }, [brainwaveMode]);
 
   // Event handlers using modern patterns
   const handleStartFocus = () => {
