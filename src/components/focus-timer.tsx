@@ -447,9 +447,9 @@ export function FocusTimer({ task, onVolumeSequenceChange }: FocusTimerProps) {
               <Button
                 onClick={resetTimer}
                 variant="outline"
-                className="rounded-full h-10 w-10 sm:h-12 sm:w-12 p-0 border-gray-600"
+                className="rounded-full h-10 w-10 sm:h-12 sm:w-12 p-0 border-gray-600 group"
               >
-                <RotateCcw className="h-4 w-4 sm:h-5 sm:w-5" />
+                <RotateCcw className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 group-hover:text-black" />
               </Button>
             </div>
 

@@ -1,7 +1,6 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
-  darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -84,12 +83,13 @@ const config = {
         float: "float 6s ease-in-out infinite",
       },
       backgroundImage: {
-        "neural-gradient": "linear-gradient(to right bottom, rgba(88, 28, 135, 0.8), rgba(67, 56, 202, 0.8))",
+        "neural-gradient":
+          "linear-gradient(to right bottom, rgba(88, 28, 135, 0.8), rgba(67, 56, 202, 0.8))",
         "brain-pattern": "url('/brain-pattern.svg')",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

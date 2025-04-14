@@ -149,6 +149,14 @@ export function BrainwaveSelector({
           mental state for the task at hand.
         </p>
       </div>
+
+      <div className="mt-2 sm:mt-3 p-3 sm:p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+        <p className="text-xs sm:text-sm text-gray-400">
+          Note: The provided audio tracks are recommendations only. Users are
+          free to use their own preferred audio or video content for each
+          frequency range.
+        </p>
+      </div>
     </div>
   );
 }
