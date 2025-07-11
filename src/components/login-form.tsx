@@ -1,26 +1,35 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Loader2, Mail, Lock, ChromeIcon as Google } from "lucide-react"
-import { Separator } from "@/components/ui/separator"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Loader2, Mail, Lock, ChromeIcon as Google } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
-  password: z.string().min(8, { message: "Password must be at least 8 characters" }),
-})
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters" }),
+});
 
-type LoginFormValues = z.infer<typeof loginSchema>
+type LoginFormValues = z.infer<typeof loginSchema>;
 
 export function LoginForm() {
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -28,15 +37,15 @@ export function LoginForm() {
       email: "",
       password: "",
     },
-  })
+  });
 
   async function onSubmit(data: LoginFormValues) {
-    setIsLoading(true)
+    setIsLoading(true);
 
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    console.log("Login data:", data)
+    console.log("Login data:", data);
 
     // In a real app, you would authenticate with your backend here
     // const response = await signIn("credentials", {
@@ -45,10 +54,10 @@ export function LoginForm() {
     //   redirect: false,
     // })
 
-    setIsLoading(false)
+    setIsLoading(false);
 
     // Redirect to dashboard on successful login
-    router.push("/")
+    router.push("/");
   }
 
   return (
@@ -83,8 +92,11 @@ export function LoginForm() {
               <FormItem>
                 <div className="flex items-center justify-between">
                   <FormLabel className="text-gray-300">Password</FormLabel>
-                  <a href="/auth/forgot-password" className="text-xs text-purple-400 hover:text-purple-300">
-                    Forgot password?
+                  <a
+                    href="/auth/forgot-password"
+                    className="text-xs text-purple-400 hover:text-purple-300"
+                  >
+                    Forgot password??
                   </a>
                 </div>
                 <FormControl>
@@ -125,16 +137,21 @@ export function LoginForm() {
           <Separator className="w-full border-gray-700" />
         </div>
         <div className="relative flex justify-center">
-          <span className="bg-gray-800 px-2 text-xs text-gray-500">OR CONTINUE WITH</span>
+          <span className="bg-gray-800 px-2 text-xs text-gray-500">
+            OR CONTINUE WITH
+          </span>
         </div>
       </div>
 
       <div className="flex justify-center">
-        <Button variant="outline" className="border-gray-700 hover:bg-gray-800 text-gray-300 w-full">
+        <Button
+          variant="outline"
+          className="border-gray-700 hover:bg-gray-800 text-gray-300 w-full"
+        >
           <Google className="mr-2 h-4 w-4" />
           Continue with Google
         </Button>
       </div>
     </div>
-  )
+  );
 }
